@@ -2,7 +2,7 @@ import numpy as np
 import copy
 
 class Newton:
-    def __init__(self, c, epsilon_1=0.001, epsilon_2=0.002, lam=1) -> None:
+    def __init__(self, c, epsilon_1=0.001, epsilon_2=0.002, lam=np.array([1, 1])) -> None:
         self.c = c
         self.epsilon_1=epsilon_1
         self.epsilon_2=epsilon_2
@@ -15,10 +15,10 @@ class Newton:
     def search(self, x, di):
         while True:
             x_next = x + self.lam * di
-            x_d = self.get_d(x_next, second=False)
+            x_d = di * self.get_d(x_next, second=False)
             if np.all(np.abs(x_d) < self.epsilon_1):
                 return self.lam
-            x_dd = self.get_d(x_next, second=True)
+            x_dd = di * di * self.get_d(x_next, second=True)
             if np.all(x_dd <= 0):
                 raise ValueError("The second derivative is smaller than 0.")
             lam_next = self.lam - x_d / x_dd
@@ -106,27 +106,27 @@ class Newton:
 
 
 if __name__ == "__main__":
-    c = np.array([[1, 0, 100],
-                  [-2, 0, 0],
-                  [1, -200, 0],
-                  [0, 0, 0],
-                  [100, 0 ,0]])
-    epsilon_1 = 0.001
-    epsilon_2 = 0.001
-    lam = 0
-    g = Newton(c, epsilon_1, epsilon_2, lam)
-    x = np.array([-1, 1])
-    di = np.array([1, 1])
-    lam = g.search(x, di)
-    print(lam)
-    # c = np.array([[0, -1, 1],
-    #               [1, 2, 0],
-    #               [2, 0, 0]])
+    # c = np.array([[1, 0, 100],
+    #               [-2, 0, 0],
+    #               [1, -200, 0],
+    #               [0, 0, 0],
+    #               [100, 0 ,0]])
     # epsilon_1 = 0.001
-    # epsilon_2 = 0.01
+    # epsilon_2 = 0.001
     # lam = 0
     # g = Newton(c, epsilon_1, epsilon_2, lam)
-    # x = np.array([0, 0])
+    # x = np.array([-1, 1])
     # di = np.array([1, 1])
     # lam = g.search(x, di)
     # print(lam)
+    c = np.array([[0, -1, 1],
+                  [1, 2, 0],
+                  [2, 0, 0]])
+    epsilon_1 = 0.001
+    epsilon_2 = 0.01
+    lam = 0
+    g = Newton(c, epsilon_1, epsilon_2, lam)
+    x = np.array([0, 0])
+    di = np.array([1, 1])
+    lam = g.search(x, di)
+    print(lam)
