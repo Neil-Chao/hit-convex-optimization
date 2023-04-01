@@ -43,6 +43,7 @@ if __name__ == "__main__":
     x = np.array([0, 0])
     cg = ConjugateGradient(c, x)
     x = cg.solve()
-    print(x)
+    output = cg.output(x)
+    print("最小值点为：{}，函数值为：{}".format(x, output))
 
 
