@@ -41,7 +41,7 @@ class WolfePowell:
             row = input[i]
             self.derivative(row, index_list + [i])
 
-    def output(self, x, index_list: list):
+    def output(self, x, index_list: list = []):
         res = 0
         row = self.c[tuple(index_list)]
         if len(row.shape) == 1:
@@ -94,5 +94,6 @@ if __name__ == "__main__":
     x = np.array([-1, 1])
     di = np.array([1, 1])
     lam = wp.search(x, di)
-    print(lam)
-    print(x + lam)
+    x = x + lam * di
+    output = wp.output(x)
+    print("步长为：{}，x为{}，y为：{}".format(lam, x, output))

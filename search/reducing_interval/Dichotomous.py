@@ -63,14 +63,14 @@ if __name__ == "__main__":
     dich = Dichotomous(c, b, alpha, beta, delta)
     index = dich.search()
     output = dich.output(index)
-    print(index, output)
+    print("最小值点为：{}，函数值为：{}".format(index, output))
 
     alpha = np.array([[0]])
     beta = np.array([[25]])
     c = np.array([[-21.6, 3]])
     b = -1
     delta = 0.08
-    gs = Dichotomous(c, b, alpha, beta, delta)
-    index = gs.search()
-    output = gs.output(index)
-    print(index, output)
+    dich = Dichotomous(c, b, alpha, beta, delta)
+    index = dich.search()
+    output = dich.output(index)
+    print("最小值点为：{}，函数值为：{}".format(index, output))

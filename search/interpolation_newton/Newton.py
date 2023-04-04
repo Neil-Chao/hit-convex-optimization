@@ -125,8 +125,8 @@ if __name__ == "__main__":
     epsilon_1 = 0.001
     epsilon_2 = 0.01
     lam = 0
-    g = Newton(c, epsilon_1, epsilon_2, lam)
+    n = Newton(c, epsilon_1, epsilon_2, lam)
     x = np.array([0, 0])
     di = np.array([1, 1])
-    lam = g.search(x, di)
+    lam = n.search(x, di)
     print(lam)

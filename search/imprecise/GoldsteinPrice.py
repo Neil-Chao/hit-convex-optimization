@@ -27,7 +27,7 @@ class GoldsteinPrice:
             phi_2 = self.output(x + self.lam * di, [])
             if np.all(phi_2 <= (phi_1 + self.rho * phi_1_d * self.lam)):
                 if np.all(phi_2 >= (phi_1 + (1 - self.rho) * phi_1_d * self.lam)):
-                    return self.lam
+                    return (self.lam, di)
                 else:
                     self.lam *= self.alpha
             else:
@@ -132,9 +132,10 @@ if __name__ == "__main__":
     beta = 0.5
     gp = GoldsteinPrice(c, rho, alpha, beta)
     x = np.array([-1, 1])
-    lam = gp.search(x)
-    print(lam)
-    print(x + lam)
+    lam, di = gp.search(x)
+    x = x + lam * di
+    output = gp.output(x)
+    print("步长为：{}，x为{}，y为：{}".format(lam, x, output))
     # c = np.array([[0, -1, 1],
     #               [1, 2, 0],
     #               [2, 0, 0]])

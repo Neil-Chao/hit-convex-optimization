@@ -39,16 +39,11 @@ class ShubertPiyavskii:
             
             lam_k = self.intersection(phi_alpha, phi_x, alpha, x,  max_d)
             mu_k = self.intersection(phi_x, phi_beta, x, beta, max_d)
-            # phi_lam = self.output(lam_k)
-            # phi_mu = self.output(mu_k)
             lower_sawtooth.append((lam_k, phi_x + max_d * (lam_k - x)))
             lower_sawtooth.append((mu_k, phi_x - max_d * (mu_k - x)))
             upper_sawtooth.append((x, phi_x))
             k += 1
 
-
-            
-    
     def find_lowest(self, lower_sawtooth: list):
         index = None
         min = np.inf
@@ -67,8 +62,6 @@ class ShubertPiyavskii:
         for i in range(len(upper_sawtooth)):
             if np.all(upper_sawtooth[i][0] > x):
                 return (upper_sawtooth[i-1][0], upper_sawtooth[i][0])
-                
-        
 
     def intersection(self, y_0, y_1, x_0, x_1, d):
         return (y_0 - y_1) / (2 * d) + (x_0 + x_1) / 2
@@ -109,7 +102,6 @@ class ShubertPiyavskii:
         for i in range(self.d.shape[0]):
             res[i] = self._get_d(x, [], self.d[i])
         return res
-        
 
     def _get_d(self, x, index_list, d):
         res = 0
@@ -126,13 +118,21 @@ class ShubertPiyavskii:
         for i in range(row.shape[0]):
             res += self._get_d(x, index_list + [i], d)
 
-
 if __name__ == "__main__":
     alpha = np.array([-1])
     beta = np.array([1])
     c = np.array([-1, -1, 2])
-    delta = 0.0001
+    delta = 0.001
     sp = ShubertPiyavskii(c, alpha, beta, delta)
     index = sp.search()
     output = sp.output(index)
-    print(index, output)
+    print("最小值点为：{}，函数值为：{}".format(index, output))
+
+    alpha = np.array([0])
+    beta = np.array([25])
+    c = np.array([-1, -21.6, 3])
+    delta = 0.001
+    sp = ShubertPiyavskii(c, alpha, beta, delta)
+    index = sp.search()
+    output = sp.output(index)
+    print("最小值点为：{}，函数值为：{}".format(index, output))

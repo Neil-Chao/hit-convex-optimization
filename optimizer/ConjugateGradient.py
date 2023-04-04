@@ -29,21 +29,21 @@ class ConjugateGradient(Newton):
             k += 1
 
 if __name__ == "__main__":
-    # c = np.array([[0, -1, 1],
-    #               [1, 2, 0],
-    #               [2, 0, 0]])
-    # x = np.array([0, 0])
-    # cg = ConjugateGradient(c, x)
-    # x = cg.solve()
-    # print(x)
-
-    c = np.array([[60, -4, 1],
-                  [-10, -1, 0],
-                  [1, 0, 0]])
+    c = np.array([[0, -1, 1],
+                  [1, 2, 0],
+                  [2, 0, 0]])
     x = np.array([0, 0])
     cg = ConjugateGradient(c, x)
     x = cg.solve()
     output = cg.output(x)
+
+    # c = np.array([[60, -4, 1],
+    #               [-10, -1, 0],
+    #               [1, 0, 0]])
+    # x = np.array([0, 0])
+    # cg = ConjugateGradient(c, x)
+    # x = cg.solve()
+    # output = cg.output(x)
     print("最小值点为：{}，函数值为：{}".format(x, output))
 
 

@@ -32,21 +32,21 @@ class DFP(Newton):
             k += 1
 
 if __name__ == "__main__":
-    # c = np.array([[0, 0, 1],
-    #               [0, 0, 0],
-    #               [10, 0, 0]])
-    # x = np.array([0.1, 1])
-    # H = np.array([[1, 0], [0, 1]])
-    # cg = DFP(c, x, H)
-    # x = cg.solve()
-    # print(x)
-
-    c = np.array([[60, -4, 1],
-                  [-10, -1, 0],
-                  [1, 0, 0]])
-    x = np.array([0, 0])
+    c = np.array([[0, 0, 1],
+                  [0, 0, 0],
+                  [10, 0, 0]])
+    x = np.array([0.1, 1])
     H = np.array([[1, 0], [0, 1]])
     dfp = DFP(c, x, H)
     x = dfp.solve()
     output = dfp.output(x)
+
+    # c = np.array([[60, -4, 1],
+    #               [-10, -1, 0],
+    #               [1, 0, 0]])
+    # x = np.array([0, 0])
+    # H = np.array([[1, 0], [0, 1]])
+    # dfp = DFP(c, x, H)
+    # x = dfp.solve()
+    # output = dfp.output(x)
     print("最小值点为：{}，函数值为：{}".format(x, output))

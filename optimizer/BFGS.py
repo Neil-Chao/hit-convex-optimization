@@ -32,21 +32,21 @@ class BFGS(Newton):
             k += 1
 
 if __name__ == "__main__":
-    # c = np.array([[0, 0, 1],
-    #               [0, 0, 0],
-    #               [10, 0, 0]])
-    # x = np.array([0.1, 1])
-    # H = np.array([[1, 0], [0, 1]])
-    # cg = BFGS(c, x, H)
-    # x = cg.solve()
-    # print(x)
-
-    c = np.array([[60, -4, 1],
-                  [-10, -1, 0],
+    c = np.array([[0, -8, 4],
+                  [-4, 0, 0],
                   [1, 0, 0]])
     x = np.array([0, 0])
     H = np.array([[1, 0], [0, 1]])
     bfgs = BFGS(c, x, H)
     x = bfgs.solve()
     output = bfgs.output(x)
+
+    # c = np.array([[60, -4, 1],
+    #               [-10, -1, 0],
+    #               [1, 0, 0]])
+    # x = np.array([0, 0])
+    # H = np.array([[1, 0], [0, 1]])
+    # bfgs = BFGS(c, x, H)
+    # x = bfgs.solve()
+    # output = bfgs.output(x)
     print("最小值点为：{}，函数值为：{}".format(x, output))

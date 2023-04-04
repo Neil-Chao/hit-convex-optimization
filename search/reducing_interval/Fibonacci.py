@@ -55,12 +55,19 @@ class Fibonacci:
         return res
 
 if __name__ == "__main__":
-    alpha = np.array([[-1]])
-    beta = np.array([[1]])
+    alpha = np.array([-1])
+    beta = np.array([1])
     c = np.array([-1, -1, 2])
     delta = 0.06
     n = 16
-    gs = Fibonacci(c, n, alpha, beta, delta)
-    index = gs.search()
-    output = gs.output(index)
-    print(index, output)
+    f = Fibonacci(c, n, alpha, beta, delta)
+    index = f.search()
+    output = f.output(index)
+    print("最小值点为：{}，函数值为：{}".format(index, output))
+    alpha = np.array([0])
+    beta = np.array([25])
+    c = np.array([-1, -21.6, 3])
+    f = Fibonacci(c, n, alpha, beta, delta)
+    index = f.search()
+    output = f.output(index)
+    print("最小值点为：{}，函数值为：{}".format(index, output))
