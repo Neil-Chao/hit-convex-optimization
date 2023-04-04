@@ -134,6 +134,7 @@ if __name__ == "__main__":
     x = np.array([-1, 1])
     lam = gp.search(x)
     print(lam)
+    print(x + lam)
     # c = np.array([[0, -1, 1],
     #               [1, 2, 0],
     #               [2, 0, 0]])

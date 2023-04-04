@@ -95,3 +95,4 @@ if __name__ == "__main__":
     di = np.array([1, 1])
     lam = wp.search(x, di)
     print(lam)
+    print(x + lam)
